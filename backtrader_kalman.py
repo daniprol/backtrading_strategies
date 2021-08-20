@@ -1,6 +1,7 @@
 import backtrader as bt
 import numpy as np
 import datetime
+import yfinance as yf
 
 
 class KalmanPair(bt.Strategy):
@@ -74,8 +75,10 @@ def run():
     startdate = datetime.datetime(2007, 1, 1)
     enddate = datetime.datetime(2017, 1, 1)
 
-    ewa = bt.feeds.YahooFinanceData(dataname="EWA", fromdate=startdate, todate=enddate)
-    ewc = bt.feeds.YahooFinanceData(dataname="EWC", fromdate=startdate, todate=enddate)
+    ewa = bt.feeds.PandasData(dataname=yf.download('EWA', startdate, enddate))
+    ewc = bt.feeds.PandasData(dataname=yf.download('EWC', startdate, enddate))
+    # ewa = bt.feeds.YahooFinanceData(dataname="EWA", fromdate=startdate, todate=enddate)
+    # ewc = bt.feeds.YahooFinanceData(dataname="EWC", fromdate=startdate, todate=enddate)
 
     cerebro.adddata(ewa)
     cerebro.adddata(ewc)

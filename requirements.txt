@@ -1,7 +1,7 @@
 yfinance
 pandas
 numpy
-matplotlib
+matplotlib==3.2.2
 backtesting
 seaborn
 ta-lib
